@@ -1,0 +1,123 @@
+
+ CodePair
+ Adam   Jared Grippe
+Task Description
+Given the following input
+
+[
+  ['name', 'tags'],
+  ['Bob', 'hungry,engineer,male'],
+  ['Mary', 'hungry,productmanager,female, likes_burritos'],
+  ['Sarah', 'hungry, engineer,female,likes_pizza'],
+  ['Joe', 'thirsty'],
+  ['Tim', 'hungry'],
+  ['Maggie', 'hungry,thirsty, engineer, likes_pizza']
+]
+1. Write a function to return all of the hungry engineers, like this:
+[
+{ name: 'Bob' }, { name: 'Sarah' }, { name: 'Maggie' }
+]
+2. Now return all the hungry and thirsty ones.
+[
+{ name: 'Maggie' }
+]
+3. Other Considerations
+What if there are more attributes or the attribute names change?
+[
+  ['name', 'neighborhood', 'labels'],
+  ['Bob', 'potrero', 'hungry,engineer,male'],
+  ['Mary', 'nopa', 'hungry,productmanager,female, likes_burritos'],
+  ['Sarah', 'marina', 'hungry, engineer,female,likes_pizza'],
+  ['Joe', 'soma', 'thirsty'],
+  ['Tim', 'soma', 'hungry'],
+  ['Maggie', 'potrero', 'hungry,thirsty, engineer, likes_pizza']
+]
+
+
+Scratchpad
+
+Question 1
+Javascript
+
+
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+    console.log('TEST 1')
+    const people = parsePeopleCSV(input())
+    const hungryEgineers = filterPeople(people, {
+        tags: ['hungry', 'engineer']
+    })
+    const hungryAndThirstyEgineers = filterPeople(people, {
+        tags: ['hungry', 'thirsty', 'engineer']
+    })
+    console.log('hungryEgineers', hungryEgineers)
+    console.log('hungryAndThirstyEgineers', hungryAndThirstyEgineers)
+}
+function test2(){
+    console.log('TEST 2')
+    const people = parsePeopleCSV(input2())
+    console.log(filterPeople(people, {
+        labels: ['hungry', 'engineer']
+    })) //expect Bob, Sarah, Maggie
+    console.log(filterPeople(people, {
+        labels: ['thirsty'],
+        neighborhood: 'soma'
+    })) //expect Joe
+}
+test1()
+test2()
+// console.log('input1', parsePeopleCSV(input()))
+// console.log('input2', parsePeopleCSV(input2()))
+// // const people = parsePeopleCSV(input1())
+// const x = filterPeople(input1(), {
+//     neighborhood: 'presidio',
+//     tag: ['thirsty'],
+// })
+// // //console.log(input3(), skill => javascript, neighborhood => presidio, tag => thirsty)
+
+Stdin
+Stdout
+Run Code (⌥ + R) Open Chat
+Output:
+TEST 1
+hungryEgineers [ { name: 'Bob' }, { name: 'Sarah' }, { name: 'Maggie' } ]
+hungryAndThirstyEgineers [ { name: 'Maggie' } ]
+TEST 2
+[ { name: 'Bob' }, { name: 'Sarah' }, { name: 'Maggie' } ]
+[ { name: 'Joe' } ]
