@@ -1,4 +1,1 @@
-{
-  "asi" : true,
-  esversion: 6
-}
+{"esversion": 6, "asi": true}

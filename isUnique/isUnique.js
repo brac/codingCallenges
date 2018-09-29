@@ -35,6 +35,7 @@
   loop:
   while( itIsUnique ) {
     for (let i = 0; i < letters.length; i++) {
+      console.log(letters[i])
       if (!alphebet[letters[i]]) {
         alphebet[letters[i]] = true
       } else if (alphebet[letters[i]]) {
