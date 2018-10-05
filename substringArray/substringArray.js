@@ -6,30 +6,33 @@ Given an input string, return an array of substrings that are each less than
 */
 
 (() => {
-  const inputString = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae nobis nam perferendis sint beatae, dignissimos ab inventore adipisci. Odio placeat quisquam impedit esse, quia optio repudiandae voluptate odit nisi, perferendis! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint, voluptatum nobis dicta dignissimos rerum accusantium, ad hic fugiat obcaecati magni iusto alias laudantium. Magni, labore, culpa. Provident nam consectetur blanditiis.'
+  let input = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae nobis nam perferendis sint beatae, dignissimos ab inventore adipisci. Odio placeat quisquam impedit esse, quia optio repudiandae voluptate odit nisi, perferendis! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint, voluptatum nobis dicta dignissimos rerum accusantium, ad hic fugiat obcaecati magni iusto alias laudantium. Magni, labore, culpa. Provident nam consectetur blanditiis.'
 
-  const createSubstrings = () => {
-  let currentLetterIndex = 0
-  let messages = []
+  const createSubstrings = (inputString) => {
+    let currentLetterIndex = 0
+    let messages = []
 
     while(currentLetterIndex < inputString.length) {
-      /* Use a counter for every 140 characters
-         Then walk back the iterator until you find a space
-         Slice the string and update the new iterator and break
-         out of the while look used to find the space.
-     */
       if (currentLetterIndex === 140) {
-        let message = ''
+        // let backCounter = 0
+        // console.log('break')
+
         // while(inputString[currentLetterIndex] !== ' '){
-          // currentLetterIndex--
-          // message = inputString.slice(0, currentLetterIndex)
+        //   backCounter++
+        //   currentLetterIndex--
         // }
+
+        // messages[0] = inputString.slice(0, currentLetterIndex)
+        // inputString = inputString.slice(currentLetterIndex)
       }
-      console.log(inputString[currentLetterIndex])
+
+      // console.log(inputString)
       currentLetterIndex++
     }
+
+    return messages
   }
-  createSubstrings(inputString)
+  console.log(createSubstrings(input))
 })()
 
 /*

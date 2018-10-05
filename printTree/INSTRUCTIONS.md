@@ -20,11 +20,11 @@ You can assume height will be even, and is >= 4
  --------X--------
 `
 `
-print_tree(6)
+print_tree(6, true)
  ----X----
- ---XXX---
- --XXXXX--
- -XXXXXXX-
+ ---X-X---
+ --X---X--
+ -X-----X-
  XXXXXXXXX
  ----X----
 `
