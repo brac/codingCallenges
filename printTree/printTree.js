@@ -3,7 +3,7 @@
   const hollow = (process.argv[3])
 
   function print_tree(height, hollow) {
-    if (height < 4) {
+    if (height < 4 ) {
       return console.log('Tree must be larger than 4')
     }
     const width = determineWidth(height)
@@ -28,19 +28,15 @@
     if (hollow == 'true' && numXs >= 3 && numXs !== width) {
       let hollowSection = line[Math.floor(line.length/2)].split('')
 
-      hollowSection.splice(Math.floor(hollowSection.length/2), 0, '-'.repeat(numXs - 2))
-
+      hollowSection.splice(Math.floor(numXs/2) -  (parseInt((numXs)/2)-1), parseInt(numXs-2), '-'.repeat(numXs - 2))
 
       hollowSection = hollowSection.join('')
       line[Math.floor(line.length/2)] = hollowSection
-      // line[Math.floor(line.length/2)] = hollowSection.join()
     }
 
     line = line.join('')
     return line
   }
-
-
 
   function determineWidth(height) {
     let width = 1
