@@ -9,34 +9,48 @@ Given an input string, return an array of substrings that are each less than
   let input = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae nobis nam perferendis sint beatae, dignissimos ab inventore adipisci. Odio placeat quisquam impedit esse, quia optio repudiandae voluptate odit nisi, perferendis! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint, voluptatum nobis dicta dignissimos rerum accusantium, ad hic fugiat obcaecati magni iusto alias laudantium. Magni, labore, culpa. Provident nam consectetur blanditiis.'
 
   const createSubstrings = (inputString) => {
-    let currentLetterIndex = 0
-    let messages = []
+    let largeString = inputString.split('')
+    let subStrings = []
+    let stringCounter = 0
+    let stringLoops = true
+    let startSlice = 0
 
-    while(currentLetterIndex < inputString.length) {
-      if (currentLetterIndex === 140) {
-        // let backCounter = 0
-        // console.log('break')
+    while(stringLoops) {
+      let currentString = largeString.slice(startSlice)
 
-        // while(inputString[currentLetterIndex] !== ' '){
-        //   backCounter++
-        //   currentLetterIndex--
-        // }
+      for(let i = 0; i < currentString.length; i++){
+        if (i % 140 === 0 ) {
+          subStrings[stringCounter] = currentString.slice(startSlice, i).join('')
+          startSlice = i
+          stringCounter++
+        }
 
-        // messages[0] = inputString.slice(0, currentLetterIndex)
-        // inputString = inputString.slice(currentLetterIndex)
+        if (currentString.slice(startSlice).length < 140) {
+          subStrings[stringCounter] = currentString.slice(startSlice).join('')
+          stringLoops = false
+          break
+        }
       }
-
-      // console.log(inputString)
-      currentLetterIndex++
     }
 
-    return messages
+    return subStrings
   }
-  console.log(createSubstrings(input))
+
+  let result =  createSubstrings(input)
+
+  for (var i = 0; i <= result.length; i++) {
+    console.log(`Substring ${i} is: \n ${result[i]}`)
+  }
+
 })()
 
 /*
 Output:
+
+
+
+
+
 Message 1 of X: (0-137)
  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae nobis nam perferendis sint beatae, dignissimos ab inventore adipisci. Odio
 
