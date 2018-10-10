@@ -6,7 +6,8 @@ Given an input string, return an array of substrings that are each less than
 */
 
 (() => {
-  let input = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae nobis nam perferendis sint beatae, dignissimos ab inventore adipisci. Odio placeat quisquam impedit esse, quia optio repudiandae voluptate odit nisi, perferendis! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint, voluptatum nobis dicta dignissimos rerum accusantium, ad hic fugiat obcaecati magni iusto alias laudantium. Magni, labore, culpa. Provident nam consectetur blanditiis.'
+  // let input = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae nobis nam perferendis sint beatae, dignissimos ab inventore adipisci. Odio placeat quisquam impedit esse, quia optio repudiandae voluptate odit nisi, perferendis! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint, voluptatum nobis dicta dignissimos rerum accusantium, ad hic fugiat obcaecati magni iusto alias laudantium. Magni, labore, culpa. Provident nam consectetur blanditiis.'
+  let input = 'Now is the time for all good men to come to the aid of their country, not because it is popular, not becuase it is to stick a thumb in the eye of your bully, but because it is the right thing to do in this troubled time. This time when we need strong leadership, fair justice and accountability from the highest of powers in the land. '
 
   const createSubstrings = (inputString) => {
     let largeString = inputString.split('')
@@ -19,10 +20,24 @@ Given an input string, return an array of substrings that are each less than
       let currentString = largeString.slice(startSlice)
 
       for(let i = 0; i < currentString.length; i++){
-        if (i % 140 === 0 ) {
-          subStrings[stringCounter] = currentString.slice(startSlice, i).join('')
-          startSlice = i
-          stringCounter++
+        if (i % 140 === 0 && i !== 0 ) {
+          if (currentString[i] !== ' ') {
+            let backCount = 0
+            let j = i
+            while(currentString[j] !== ' ') {
+              backCount++
+              j--
+            }
+
+            subStrings[stringCounter] = currentString.slice(startSlice, i - backCount).join('')
+            startSlice = (i - backCount)
+            stringCounter++
+
+          } else {
+            subStrings[stringCounter] = currentString.slice(startSlice, i).join('')
+            startSlice = (i - backCount)
+            stringCounter++
+          }
         }
 
         if (currentString.slice(startSlice).length < 140) {
@@ -32,27 +47,21 @@ Given an input string, return an array of substrings that are each less than
         }
       }
     }
-
     return subStrings
   }
 
   let result =  createSubstrings(input)
 
-  for (var i = 0; i <= result.length; i++) {
-    console.log(`Substring ${i} is: \n ${result[i]}`)
+  for (let i = 0; i < result.length; i++) {
+    console.log(`Substring ${i} is: \n${result[i]}`)
   }
-
 })()
 
 /*
 Output:
 
-
-
-
-
 Message 1 of X: (0-137)
- Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae nobis nam perferendis sint beatae, dignissimos ab inventore adipisci. Odio
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae nobis nam perferendis sint beatae, dignissimos ab inventore adipisci. Odio
 
 Message 2 of X: (138-277)
   placeat quisquam impedit esse, quia optio repudiandae voluptate odit nisi, perferendis! Lorem ipsum dolor sit amet, consectetur adipisicing
