@@ -10,7 +10,6 @@
 .score-card-inputs{
   padding-left: 2em;
   min-height: 5em;
-  min-width: 6em;
 }
 
 .score-output{
@@ -46,8 +45,23 @@
   text-align: center;
 }
 
+.round-number-last{
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+  min-width: 105px;
+  text-align: center;
+}
+
 .round-total {
   text-align: center;
-  width: 215px;
+  width: 211px;
   border-bottom: 1px solid black;
+}
+
+.score-card-last-input{
+  padding-left:0;
+}
+
+.submit-buttons{
+  display: none;
 }
