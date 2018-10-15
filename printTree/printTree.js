@@ -1,6 +1,5 @@
-(() => {
-  const height = parseInt(process.argv[2])
-  const hollow = (process.argv[3])
+const height = parseInt(process.argv[2])
+const hollow = (process.argv[3])
 
   function print_tree(height, hollow) {
     if (height < 4 ) {
@@ -19,37 +18,26 @@
     }
       console.log(genLine(width, numXs))
   }
+  const width = ((height - 1) * 2) - 1
 
-  function genLine(width, numXs){
-    let line = new Array(width + 1).fill('-')
-
-    line.splice(Math.floor(width/2) - (numXs - 1)/2, numXs + 1, 'X'.repeat(numXs))
-
-    if (hollow == 'true' && numXs >= 3 && numXs !== width) {
-      let hollowSection = line[Math.floor(line.length/2)].split('')
-
-      hollowSection.splice(Math.floor(numXs/2) -  (parseInt((numXs)/2)-1), parseInt(numXs-2), '-'.repeat(numXs - 2))
-
-      hollowSection = hollowSection.join('')
-      line[Math.floor(line.length/2)] = hollowSection
-    }
-
-    line = line.join('')
-    return line
+  for (let i = 0; i < height; i++) {
+    const lastLine = i + 1 === height
+    const numberOfXes = lastLine ? 1 : i + i + 1
+    console.log(genLine(width, numberOfXes))
   }
+}
 
-  function determineWidth(height) {
-    let width = 1
-    let currentLine = 1
+function genLine(width, numXs){
+  const leftOffset = Math.floor((width - numXs)/2)
+  const rightOffset = numXs + leftOffset
 
-    while(currentLine < height - 1){
-      width += 2
-      currentLine += 1
-    }
-    return width
-  }
+  if (width === numXs) return Array(width).fill('X').join('')
 
-  print_tree(height, hollow)
-})()
+  return Array(width).fill().map((_, cellIndex) =>
+    cellIndex < leftOffset ||
+    (hollow && cellIndex > leftOffset && cellIndex < rightOffset - 1 ) ||
+    cellIndex >= rightOffset ? '-' : 'X'
+  ).join('')
+}
 
-
+print_tree(height, hollow)

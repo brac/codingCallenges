@@ -1,3 +1,39 @@
+const input = (
+`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae
+ nobis nam perferendis sint beatae, dignissimos ab inventore adipisci.
+ Odio placeat quisquam impedit esse, quia optio repudiandae
+ voluptate odit nisi, perferendis! Lorem ipsum dolor sit amet,
+ consectetur adipisicing elit. Sint, voluptatum nobis dicta
+ dignissimos rerum accusantium, ad hic fugiat obcaecati magni iusto
+ alias laudantium. Magni, labore, culpa. Provident nam consectetur
+ blanditiis.`
+).replace(/\n/g, '')
+
+
+const twitterifyThisShit = function(string){
+  const characters = string.split('');
+  const messages = []
+
+  while(characters.length > 131){
+    let messageLength = 131
+    while(messageLength > 0 && characters[messageLength-1] !== ' ') messageLength--;
+    messages.push(characters.splice(0, messageLength).join(''))
+  }
+  messages.push(characters.splice(0, characters.length-1).join(''))
+  const numberOfMessages = messages.length
+  return messages.map((m,i) => `${m} (${i+1} of ${numberOfMessages})`);
+}
+
+const messages = twitterifyThisShit(input)
+messages.forEach(message => {
+  console.log(message)
+  console.log(message.length)
+})
+process.exit()
+
+
+
+
 /*
 Given an input string, return an array of substrings that are each less than
   or equal to 140 characters, including a count of the string’s position out
@@ -21,26 +57,24 @@ Given an input string, return an array of substrings that are each less than
 
       for(let i = 0; i < currentString.length; i++){
         if (i % 140 === 0 && i !== 0 ) {
+          let sliceTo = i
+          let backCount = 0
           if (currentString[i] !== ' ') {
-            let backCount = 0
+            console.log(`i=${i} went inside of first if`)
             let j = i
             while(currentString[j] !== ' ') {
               backCount++
               j--
             }
-
-            subStrings[stringCounter] = currentString.slice(startSlice, i - backCount).join('')
-            startSlice = (i - backCount)
-            stringCounter++
-
-          } else {
-            subStrings[stringCounter] = currentString.slice(startSlice, i).join('')
-            startSlice = (i - backCount)
-            stringCounter++
+            sliceTo = i - backCount
           }
+          subStrings[stringCounter] = currentString.slice(startSlice, sliceTo).join('')
+          startSlice = (i - backCount)
+          stringCounter++
         }
 
         if (currentString.slice(startSlice).length < 140) {
+          console.log(`i=${i} went inside of second if`)
           subStrings[stringCounter] = currentString.slice(startSlice).join('')
           stringLoops = false
           break
