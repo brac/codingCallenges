@@ -1,0 +1,53 @@
+.bowling-scores {
+  border: 2px solid black;
+  min-height: 200px;
+}
+
+.score-input {
+  max-width: 2em;
+}
+
+.score-card-inputs{
+  padding-left: 2em;
+  min-height: 5em;
+  min-width: 6em;
+}
+
+.score-output{
+  text-align: right;
+  padding-right: 1em;
+}
+
+.score-total{
+  margin: auto;
+}
+
+.score-title .round-number, .player-name-title{
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+}
+
+.player-name{
+  min-width: 140px;
+}
+
+.player-name-title{
+  padding-left: 3em;
+  padding-right: 2.15em;
+
+}
+
+.player-number {
+  min-width: 40px;
+}
+
+.round-number {
+  min-width: 101px;
+  text-align: center;
+}
+
+.round-total {
+  text-align: center;
+  width: 215px;
+  border-bottom: 1px solid black;
+}

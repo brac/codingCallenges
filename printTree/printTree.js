@@ -10,7 +10,7 @@
     let numXs = 1
 
     for (let i = 0; i < height; i++) {
-      if (i + 1 == height) {
+      if (i + 1 === height) {
         numXs = 1
         break
       }
