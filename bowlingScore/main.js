@@ -2,15 +2,18 @@
 Create an app that will compute the score for a game of bowling.
 */
 window.onload = function () {
-  const formTest = document.querySelector('#test-form')
+  const scoreCards = document.querySelectorAll('.score-form')
 
-  formTest.addEventListener('submit', (e) => {
-    e.preventDefault()
-    console.log('submitting!')
+  scoreCards.forEach(form => {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault()
+
+      inputs = form.querySelectorAll('.score-input')
+
+      inputs.forEach(input => {
+        console.log(input.value)
+      })
+
+    })
   })
-
-
-
-
-
 }
